@@ -30,36 +30,16 @@ TourFirm — информационная система турфирмы. Пр�
 ```text
 TourFirm                                    # Корневая папка проекта
 │
-├── .git/                                   # Скрытая папка Git
-├── .gitignore                              # Исключения для Git
-├── TourFirm.sln                            # Файл решения Visual Studio
-├── README.md                               # Документация проекта
-│
 ├── docs/                                   # Документация
-│   └── diagrams/
-│       ├── usecase.puml                    # Диаграмма вариантов использования
-│       ├── component.puml                  # Диаграмма компонентов
-│       └── sequence.puml                   # Диаграмма последовательности
+│   └── diagrams/                           # Диаграммы PlantUML
 │
 ├── src/                                    # Исходный код
 │   ├── TourFirm.Data/                      # Модели данных и работа с БД
-│   │   ├── Entities/                       # Сущности предметной области
-│   │   ├── Migrations/                     # Миграции EF Core
-│   │   └── AppDbContext.cs                 # Контекст базы данных
-│   │
 │   ├── TourFirm.Api/                       # REST API
-│   │   ├── Controllers/                    # HTTP-контроллеры
-│   │   ├── Program.cs                      # Точка входа API
-│   │   └── appsettings.json                # Конфигурация
-│   │
 │   └── TourFirm.Desktop/                   # Настольный клиент WPF
-│       ├── Services/                       # ApiClient и вспомогательные сервисы
-│       ├── Windows/                        # Окна приложения
-│       ├── App.xaml                        # Точка входа WPF
-│       └── MainWindow.xaml                 # Главное окно
 │
 └── tests/                                  # Автоматизированные тесты
-    └── TourFirm.Tests/
+    └── TourFirm.Tests/                     # Проект тестов
 ```
 
 ## Архитектура
@@ -72,22 +52,18 @@ TourFirm                                    # Корневая папка про
      │
      ▼
 Настольный клиент WPF
-(LoginWindow, ClientWindow, EmployeeWindow)
      │
      ▼
 HTTP / JSON
      │
      ▼
 REST API (ASP.NET Core)
-(Controllers)
      │
      ▼
 Слой доступа к данным (EF Core)
-(AppDbContext)
      │
      ▼
 База данных SQLite
-(tourfirm.db)
 ```
 
 Такое разделение позволяет независимо развивать клиент, сервер и базу данных,
@@ -186,9 +162,9 @@ dotnet run --project src/TourFirm.Desktop
 При разработке рекомендуется соблюдать следующую организацию кода:
 
 * модели предметной области размещать в `TourFirm.Data/Entities`;
-* работу с базой данных — в `TourFirm.Data` (DbContext и миграции);
+* работу с базой данных — в `TourFirm.Data`;
 * HTTP-контроллеры и бизнес-логику — в `TourFirm.Api/Controllers`;
-* код интерфейса — в `TourFirm.Desktop` (окна, разметка XAML);
+* код интерфейса — в `TourFirm.Desktop`;
 * обращения к API — через единый `ApiClient`.
 
 ### Работа с Git
@@ -218,4 +194,4 @@ git push -u origin feature/название-задачи
 
 ## Лицензия
 
-Проект является учебным. Условия использования могут быть определены в файле `LICENSE`.
+Проект является учебным. Условия использования могут быть определены в файле `LICENSE`. 
